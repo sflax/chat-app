@@ -12,7 +12,6 @@ function App() {
       myRef.current.scrollIntoView();
     }
   }, [chatApi.messages]);
-  //note
 
   return (
     <div className="App">

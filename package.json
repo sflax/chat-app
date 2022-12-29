@@ -20,5 +20,18 @@
     "sass": "^1.57.0",
     "typescript": "^4.6.4",
     "vite": "^3.2.3"
-  }
+  },
+  "description": "This app is a frontend implementation for a chat application, using mock data.",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sflax/chat-app.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sflax/chat-app/issues"
+  },
+  "homepage": "https://github.com/sflax/chat-app#readme"
 }
