@@ -13,13 +13,15 @@ app.use(express.json());
 
 app.get("/messages", (req: Request, res: Response) => res.send(mockMessages));
 
-app.get("/get-messages", (req: Request, res: Response) => {});
+app.get("/getMessages", (req: Request, res: Response) => {
+  mockMessages.map((message) => {});
+});
 
 app.get("/user-details", (req: Request, res: Response) =>
   res.send(mockUserDetails)
 );
 
-app.get("/get-user-name-id", (req: Request, res: Response) => {
+app.get("/getUsers", (req: Request, res: Response) => {
   const usersNameID = mockUserDetails.map((user) => {
     const id = user.id;
     const name = user.name;
