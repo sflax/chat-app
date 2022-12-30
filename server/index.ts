@@ -49,10 +49,10 @@ app.get("/getUserDetails/:id", (req: Request, res: Response) => {
 
 app.post("/addNewMessage", bodyParser.json(), (req: Request, res: Response) => {
   //request includes authorId, id, message(body) and timestamp(date+time) that will be converted in the app.ts component.
-  //add like set to zero
+  //add likes array
   const newMessage = req.body;
   //adding new Message to the server DB to keep the msg
-  mockMessages.push({ ...newMessage, likes: [] });
+  mockMessages.push({ ...newMessage, likes: [0] });
   res.status(201).send({ message: "Message was created successfully" });
 });
 
