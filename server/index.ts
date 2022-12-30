@@ -4,6 +4,7 @@ import mockUserDetails from "./mockUserDetails";
 import cors from "cors";
 import { request } from "http";
 import { Message } from "./types/message";
+import bodyParser from "body-parser";
 
 const app = express();
 const port = 4000;
@@ -31,11 +32,17 @@ app.get("/user-details", (req: Request, res: Response) =>
 
 app.get("/getUsers", (req: Request, res: Response) => {
   const usersNameID = mockUserDetails.map((user) => {
-    const id = user.id;
-    const name = user.name;
+    const { id, name } = user;
     return { id, name };
   });
   res.send(usersNameID);
+});
+
+app.get("/getUserDetails/:id", (req: Request, res: Response) => {
+  const { id } = req.params;
+  //adding casting (+) as user.id is a number
+  const user = mockUserDetails.filter((user) => user.id === +id);
+  res.send(user);
 });
 
 app.listen(port, () => console.log(`listening on port ${port}`));
