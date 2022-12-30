@@ -3,6 +3,7 @@ import mockMessages from "./mockMessages";
 import mockUserDetails from "./mockUserDetails";
 import cors from "cors";
 import { request } from "http";
+import { Message } from "./types/message";
 
 const app = express();
 const port = 4000;
@@ -14,7 +15,14 @@ app.use(express.json());
 app.get("/messages", (req: Request, res: Response) => res.send(mockMessages));
 
 app.get("/getMessages", (req: Request, res: Response) => {
-  mockMessages.map((message) => {});
+  //add authorName using the same function from hooks/server-requests
+  const mockMessagesWithNames = mockMessages.map((message: Message) => {
+    const author = mockUserDetails.find((user) => user.id === message.authorId);
+    const authorName = author && author.name;
+
+    return { ...message, authorName };
+  });
+  res.send(mockMessagesWithNames);
 });
 
 app.get("/user-details", (req: Request, res: Response) =>
