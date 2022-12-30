@@ -13,6 +13,10 @@ app.use(express.json());
 
 // app.use(cors({ origin: "http://localhost:5173" }));
 
+app.get("/", (req: Request, res: Response) => {
+  res.send(`using the app hosted on port ${port}`);
+});
+
 app.get("/messages", (req: Request, res: Response) => res.send(mockMessages));
 
 app.get("/getMessages", (req: Request, res: Response) => {
@@ -48,11 +52,17 @@ app.get("/getUserDetails/:id", (req: Request, res: Response) => {
 });
 
 app.post("/addNewMessage", bodyParser.json(), (req: Request, res: Response) => {
+  //adding new Message to the server DB to keep the msg
   //request includes authorId, id, message(body) and timestamp(date+time) that will be converted in the app.ts component.
   //add likes array
-  const newMessage = req.body;
-  //adding new Message to the server DB to keep the msg
-  mockMessages.push({ ...newMessage, likes: [0] });
+  // const newMessage = req.body;
+  // const {authorId, id, body, timestamp} = newMessage
+  const authorId = req.body.authorId;
+  const id = req.body.id;
+  const body = req.body.body;
+  const timestamp = req.body.timestamp;
+  const likes = [];
+  mockMessages.push({ authorId, id, body, timestamp, likes });
   res.status(201).send({ message: "Message was created successfully" });
 });
 
