@@ -31,6 +31,7 @@ app.get("/user-details", (req: Request, res: Response) =>
 );
 
 app.get("/getUsers", (req: Request, res: Response) => {
+  //generate new array with id and name out of the existing DB
   const usersNameID = mockUserDetails.map((user) => {
     const { id, name } = user;
     return { id, name };
@@ -39,10 +40,25 @@ app.get("/getUsers", (req: Request, res: Response) => {
 });
 
 app.get("/getUserDetails/:id", (req: Request, res: Response) => {
+  //using params and filter to get requested id
   const { id } = req.params;
   //adding casting (+) as user.id is a number
   const user = mockUserDetails.filter((user) => user.id === +id);
   res.send(user);
 });
+
+app.post("/addNewMessage", bodyParser.json(), (req: Request, res: Response) => {
+  //request includes authorId, id, message(body) and timestamp(date+time) that will be converted in the app.ts component.
+  //add like set to zero
+  const newMessage = req.body;
+  mockMessages.push({ ...newMessage, likes: [] });
+  res.status(201).send({ message: "Message was created successfully" });
+});
+
+app.post(
+  "/changeMessageLikes",
+  bodyParser.json(),
+  (req: Request, res: Response) => {}
+);
 
 app.listen(port, () => console.log(`listening on port ${port}`));
