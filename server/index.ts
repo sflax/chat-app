@@ -2,7 +2,7 @@ import express, { Request, Response } from "express";
 import mockMessages from "./mockMessages";
 import mockUserDetails from "./mockUserDetails";
 import cors from "cors";
-import { request } from "http";
+// import { request } from "http";
 import { Message } from "./types/message";
 import bodyParser from "body-parser";
 
@@ -11,7 +11,7 @@ const port = 4000;
 
 app.use(express.json());
 
-// app.use(cors({ origin: "http://localhost:5173" }));
+app.use(cors({ origin: "http://localhost:5173" }));
 
 app.get("/", (req: Request, res: Response) => {
   res.send(`using the app hosted on port ${port}`);
