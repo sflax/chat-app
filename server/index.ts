@@ -51,6 +51,7 @@ app.post("/addNewMessage", bodyParser.json(), (req: Request, res: Response) => {
   //request includes authorId, id, message(body) and timestamp(date+time) that will be converted in the app.ts component.
   //add like set to zero
   const newMessage = req.body;
+  //adding new Message to the server DB to keep the msg
   mockMessages.push({ ...newMessage, likes: [] });
   res.status(201).send({ message: "Message was created successfully" });
 });
@@ -58,7 +59,15 @@ app.post("/addNewMessage", bodyParser.json(), (req: Request, res: Response) => {
 app.post(
   "/changeMessageLikes",
   bodyParser.json(),
-  (req: Request, res: Response) => {}
+  (req: Request, res: Response) => {
+    const changeLikeStatusEvent = req.body;
+    // console.log(changeLikeStatusEvent);
+    const { messageId, userId, like } = changeLikeStatusEvent;
+    let messageToUpdate = mockMessages.filter(
+      (message) => message.id === messageId
+    );
+    //need to complete the logic
+  }
 );
 
 app.listen(port, () => console.log(`listening on port ${port}`));
