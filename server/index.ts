@@ -11,7 +11,8 @@ const port = 4000;
 
 app.use(express.json());
 
-app.use(cors({ origin: "http://localhost:5173" }));
+// app.use(cors({ origin: "http://localhost:5173" }));
+app.use(cors());
 
 app.get("/", (req: Request, res: Response) => {
   res.send(`using the app hosted on port ${port}`);

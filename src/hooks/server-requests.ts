@@ -1,10 +1,8 @@
 import { Message } from "../types/message";
-import { mockUsers } from "../assets/mockUsers"; // todo: remove this line after server implementation
+// import { mockUsers } from "../assets/mockUsers"; // todo: remove this line after server implementation
 
-//I left is as is as the endpoint didnt work
-const endpoint = "../assets/"; // todo: add endpoint (server) address (starting with http://)
-
-// const endpoint = "http://localhost:4000";
+// const endpoint = "../assets/"; // todo: add endpoint (server) address (starting with http://)
+const endpoint = "http://localhost:4000";
 
 /**
  * GET Request to get the list of messages
